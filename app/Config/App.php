@@ -14,7 +14,7 @@ class App extends BaseConfig
 
     public string $defaultLocale = 'en';
 
-    public string $negotiateLocale = false;
+    public bool $negotiateLocale = false;
 
     public array $supportedLocales = ['en'];
 

@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?></title>
+    <title><?= isset($title) ? $title : 'Announcements' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Student Portal</a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3">Welcome, <?= ucfirst($_SESSION['role'] ?? 'User') ?>!</span>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="mb-4"><?= $title ?></h1>
+                <h1 class="mb-4"><?= isset($title) ? $title : 'Announcements' ?></h1>
                 
                 <?php if (empty($announcements)): ?>
                     <div class="alert alert-info">
@@ -23,10 +33,10 @@
                             <div class="col-md-6 mb-4">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0"><?= esc($announcement['title']) ?></h5>
+                                        <h5 class="card-title mb-0"><?= htmlspecialchars($announcement['title']) ?></h5>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= esc($announcement['content']) ?></p>
+                                        <p class="card-text"><?= htmlspecialchars($announcement['content']) ?></p>
                                     </div>
                                     <div class="card-footer text-muted">
                                         <small>Posted on: <?= date('F j, Y g:i A', strtotime($announcement['created_at'])) ?></small>
