@@ -10,18 +10,18 @@ class AnnouncementSeeder extends Seeder
     {
         $data = [
             [
-                'title' => 'Welcome to the New Academic Year',
-                'content' => 'We are excited to welcome all students to the new academic year. Please make sure to check your schedules and attend all classes regularly. If you have any questions, feel free to contact the administration office.',
+                'title' => 'System Maintenance Notice',
+                'content' => 'Please be informed that the school portal will undergo scheduled maintenance on October 25, 2025, from 8:00 PM to 11:00 PM. Access to the system will be temporarily unavailable during this period. We appreciate your understanding.',
                 'created_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'Important: Midterm Examination Schedule',
-                'content' => 'The midterm examinations will be held from October 15-20, 2024. Please prepare accordingly and ensure you have all necessary materials. Good luck to all students!',
+                'title' => 'Enrollment for Second Semester 2025 Now Open',
+                'content' => 'Enrollment for the Second Semester of Academic Year 2025 is now open! Please log in to your student account to finalize your subjects and confirm your registration. Deadline for enrollment is November 5, 2025.',
                 'created_at' => date('Y-m-d H:i:s', strtotime('-2 days'))
             ],
             [
-                'title' => 'Library Hours Update',
-                'content' => 'The library will now be open from 7:00 AM to 10:00 PM on weekdays and 8:00 AM to 6:00 PM on weekends. Students are encouraged to utilize the library resources for their studies.',
+                'title' => 'Campus Clean-Up Drive',
+                'content' => 'Join us for our upcoming Clean-Up Drive on October 22, 2025, at 7:30 AM. All students and faculty members are encouraged to participate. Let’s work together to maintain a clean and green campus!',
                 'created_at' => date('Y-m-d H:i:s', strtotime('-5 days'))
             ]
         ];

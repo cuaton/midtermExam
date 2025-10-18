@@ -1,132 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= isset($title) ? $title : 'Teacher Dashboard' ?></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?= isset($title) ? $title : 'Teacher Dashboard' ?></title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            background-color: #f5f7fa;
-            font-family: "Poppins", sans-serif;
-            color: #333;
-        }
+  <style>
+    /* Base */
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #f8f9fa;
+      overflow-x: hidden;
+    }
 
-        .navbar {
-            background: linear-gradient(90deg, #28a745, #218838);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #00c853, #64dd17);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      animation: slideDown 0.8s ease;
+    }
 
-        .navbar-brand {
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+    .navbar-brand {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff !important;
+      text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    }
 
-        .navbar-text {
-            color: #fff;
-        }
+    .navbar-text, .nav-link {
+      color: #fff !important;
+      transition: 0.3s ease;
+      font-weight: 500;
+    }
 
-        .nav-link {
-            color: #fff !important;
-            transition: 0.3s;
-        }
+    .nav-link:hover {
+      color: #212121 !important;
+      background: rgba(255,255,255,0.8);
+      border-radius: 30px;
+      padding: 5px 15px;
+    }
 
-        .nav-link:hover {
-            color: #ffe082 !important;
-        }
+    /* Header */
+    .dashboard-header {
+      text-align: center;
+      padding: 6rem 1rem 3rem;
+      animation: fadeInUp 1s ease;
+    }
 
-        .dashboard-container {
-            padding: 3rem 1rem;
-        }
+    .dashboard-header h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      text-shadow: 0 0 20px rgba(100,255,100,0.4);
+    }
 
-        .card {
-            border: none;
-            border-radius: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
+    .dashboard-header p {
+      color: #ccc;
+      font-size: 1.1rem;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
+    /* Cards */
+    .dashboard-card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
+    .dashboard-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 45px rgba(0,255,100,0.3);
+    }
 
-        .display-5 {
-            font-weight: 700;
-            color: #2e7d32;
-        }
+    .dashboard-card i {
+      font-size: 3rem;
+      color: #76ff03;
+      margin-bottom: 1rem;
+      animation: glowPulse 3s infinite ease-in-out;
+    }
 
-        .btn-custom {
-            border-radius: 30px;
-            font-weight: 600;
-            padding: 0.6rem 1.4rem;
-        }
+    .dashboard-card h5 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
 
-        .footer {
-            background-color: #ffffff;
-            border-top: 1px solid #e0e0e0;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-    </style>
+    .dashboard-card p {
+      color: #bbb;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Button */
+    .btn-custom {
+      background: linear-gradient(90deg, #76ff03, #00e676);
+      border: none;
+      color: #111;
+      font-weight: 600;
+      border-radius: 30px;
+      padding: 0.7rem 1.5rem;
+      transition: 0.4s ease;
+      box-shadow: 0 0 15px rgba(0,255,100,0.3);
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(100,255,100,0.7);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: #aaa;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 4rem;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Animations */
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 10px #76ff03; }
+      50% { text-shadow: 0 0 25px #00e676; }
+      100% { text-shadow: 0 0 10px #76ff03; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Scroll Animation */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    [data-animate].active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="fas fa-graduation-cap me-2"></i>Student Portal
-            </a>
-            <div class="navbar-nav ms-auto d-flex align-items-center">
-                <span class="navbar-text me-3">
-                    <i class="fas fa-user-circle me-1"></i> Welcome, Teacher!
-                </span>
-                <a class="nav-link btn btn-sm btn-light text-success fw-semibold px-3" href="/logout">
-                    <i class="fas fa-sign-out-alt me-1"></i> Logout
-                </a>
-            </div>
-        </div>
-    </nav>
 
-    <!-- MAIN CONTENT -->
-    <div class="container dashboard-container">
-        <div class="text-center mb-5">
-            <h1 class="display-5 mb-3">Teacher Dashboard</h1>
-            <p class="lead text-muted">Manage your classes, students, and announcements all in one place.</p>
-        </div>
-
-        <div class="row justify-content-center g-4">
-            <div class="col-md-4">
-                <div class="card text-center p-4">
-                    <div class="mb-3">
-                        <i class="fas fa-bullhorn fa-3x text-success"></i>
-                    </div>
-                    <h5 class="card-title">Announcements</h5>
-                    <p class="text-muted">Post and view important updates for your students.</p>
-                    <a href="/announcements" class="btn btn-success btn-custom">View Announcements</a>
-                </div>
-            </div>
-
-            
-        </div>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class="fas fa-graduation-cap me-2"></i>Student Portal</a>
+      <div class="navbar-nav ms-auto d-flex align-items-center">
+        <span class="navbar-text me-3"><i class="fas fa-user-circle me-1"></i> Welcome, Teacher!</span>
+        <a class="nav-link btn btn-sm btn-light text-success fw-semibold px-3" href="/logout">
+          <i class="fas fa-sign-out-alt me-1"></i> Logout
+        </a>
+      </div>
     </div>
+  </nav>
 
-    <!-- FOOTER -->
-    <div class="footer">
-        &copy; <?= date('Y') ?> Student Portal. All rights reserved.
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <h1><i class="fas fa-chalkboard-teacher me-2 text-success"></i>Teacher Dashboard</h1>
+    <p>Manage classes, students, and announcements with power and ease.</p>
+  </div>
+
+  <!-- DASHBOARD CARDS -->
+  <div class="container pb-5">
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-md-4" data-animate>
+        <div class="dashboard-card">
+          <i class="fas fa-bullhorn"></i>
+          <h5>Announcements</h5>
+          <p>Post and view important updates for your students.</p>
+          <a href="/announcements" class="btn btn-custom">Go to Announcements</a>
+        </div>
+      </div>
+
+      
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- FOOTER -->
+  <footer>
+    &copy; <?= date('Y') ?> Student Portal — Teacher Dashboard. All Rights Reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Animate on Scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
