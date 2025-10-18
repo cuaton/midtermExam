@@ -281,7 +281,7 @@
         <div class="col-lg-4">
           <h6 class="text-white fw-bold mb-3">Contact</h6>
           <p><i class="fas fa-envelope me-2"></i>dan@studentportal.edu</p>
-          <p><i class="fas fa-phone me-2"></i>+63 123-4567</p>
+          <p><i class="fas fa-phone me-2"></i>+63 123-45678</p>
           <p><i class="fas fa-map-marker-alt me-2"></i>RMMC GENSAN</p>
         </div>
       </div>
